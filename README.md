@@ -14,7 +14,7 @@ To get through with all the operations these requirements should be met:
 * Virtualbox installed locally
 * WSL installed, if launched on Windows
 * Ansible installed
-* Internet connection
+* The scripts download Vagrant box from [https://cloud-images.ubuntu.com/], maven dependencies and docker images from DockerHub, so a connection to the Internet is mandatory too
 
 ## Quick start how-to
 
