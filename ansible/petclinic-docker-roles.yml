@@ -22,6 +22,13 @@
       pip:
         name: docker
 
+    - name: add vagrant user to docker group
+      user:
+        name: vagrant
+        append: yes
+        groups: docker
+      become: true
+
     - name: "run container"
       docker_container:
         name: ng01000_petclinic
