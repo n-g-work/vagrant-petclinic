@@ -11,7 +11,9 @@
         "playbook": "ansible/registry.yml",
         "memory": 4096,
         "cpus": 4,
-        "ip": "192.168.56.10"
+        "ip": "192.168.56.10",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     },{
         "name": "db",
         "description": "Database VM. Spinning it up prior to the app VMs",
@@ -19,7 +21,9 @@
         "playbook": "ansible/petclinic-database.yml",
         "memory": 1024,
         "cpus": 1,
-        "ip": "192.168.56.20"
+        "ip": "192.168.56.20",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     },{
         "name": "app1",
         "description": "App VM. Now's the time to spin up a VM with the application",
@@ -27,7 +31,9 @@
         "playbook": "ansible/petclinic-docker-roles.yml",
         "memory": 512,
         "cpus": 1,
-        "ip": "192.168.56.30"
+        "ip": "192.168.56.30",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     },{
         "name": "app2",
         "description": "App VM. And another one. Just to complete the set",
@@ -35,7 +41,9 @@
         "playbook": "ansible/petclinic-docker-roles.yml",
         "memory": 512,
         "cpus": 1,
-        "ip": "192.168.56.31"
+        "ip": "192.168.56.31",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     },{
         "name": "lb",
         "description": "Load Balancer VM. Should be spun up after the app VMs",
@@ -43,7 +51,9 @@
         "playbook": "ansible/balancer.yml",
         "memory": 512,
         "cpus": 1,
-        "ip": "192.168.56.40"
+        "ip": "192.168.56.40",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     },{
         "name": "monitoring",
         "description": "Monitoring VM. The crown jewel - it supposed to monitor the whole pack",
@@ -51,6 +61,8 @@
         "playbook": "ansible/monitoring.yml",
         "memory": 1024,
         "cpus": 1,
-        "ip": "192.168.56.50"
+        "ip": "192.168.56.50",
+        "registry_ip": "192.168.56.10",
+        "database_ip": "192.168.56.20"
     }
 ]
