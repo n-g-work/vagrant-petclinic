@@ -29,6 +29,22 @@
         groups: docker
       become: true
 
+    - name: ensure daemon.json file exists
+      file: 
+        path: /etc/docker/daemon.json
+        state: touch
+    - name: add local ip address to allowed insecure hosts
+      lineinfile: 
+        path: /etc/docker/daemon.json
+        state: present
+        line: "{{ item.value | to_nice_json }}"
+      with_items: 
+        - value: "{\"insecure-registries\":[\"{{registry_ip}}:5000\"],\"log-driver\":\"json-file\"}"
+    - name: docker restart
+      service:
+        name: docker
+        state: restarted
+
     - name: "run container"
       docker_container:
         name: petclinic
