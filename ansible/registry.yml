@@ -39,7 +39,7 @@
         state: present
         line: "{{ item.value | to_nice_json }}"
       with_items: 
-        - value: "{\"insecure-registries\":[\"{{ip}}:5000\"]}"
+        - value: "{\"insecure-registries\":[\"{{registry_ip}}:5000\"],\"log-driver\":\"json-file\"}"
     - name: docker restart
       service:
         name: docker
