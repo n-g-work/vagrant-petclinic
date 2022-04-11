@@ -40,6 +40,42 @@ bash ./scripts/vagrant-remove.sh
 bash ./scripts/vagrant-re-apply.sh
 ```
 
+## Running Vagrant commands manually
+
+Vagrantfile for the VMs is located within [vagrant/](vagrant/) sub-folder. Assuming that commands will be executed while in the root repository folder, all the vagrant commands are to be prefaced with `VAGRANT_VAGRANTFILE` variable.
+
+### Vagrant up
+
+```bash
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant up
+```
+
+### Vagrant halt
+
+```bash
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant halt
+```
+
+### Access individual VMs over ssh
+
+```bash
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant ssh machine_name
+# for example, access to registry VM:
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant ssh registry
+```
+
+### Vagrant destroy
+
+```bash
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant destroy
+```
+
+### Vagrant status
+
+```bash
+VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant status
+```
+
 ## Customizations
 
 To change the number and parameters of VMs change [vagrant/boxes.json](vagrant/boxes.json).
