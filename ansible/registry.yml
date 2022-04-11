@@ -60,7 +60,7 @@
         build:
           path: "/vagrant/"
           pull: no
-        name: "{{ip}}:5000/petclinic"
+        name: "{{registry_ip}}:5000/petclinic"
         tag: latest
         push: yes
         source: build
