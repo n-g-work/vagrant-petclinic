@@ -78,4 +78,11 @@ VAGRANT_VAGRANTFILE=vagrant/Vagrantfile vagrant status
 
 ## Customizations
 
+### Change the number of VMs or their hardware specifications
+
 To change the number and parameters of VMs change [vagrant/boxes.json](vagrant/boxes.json).
+To apply the changes run the `scripts/vagrant-re-apply.sh`:
+
+```bash
+bash ./scripts/vagrant-re-apply.sh
+```
