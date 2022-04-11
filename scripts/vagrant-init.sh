@@ -28,15 +28,13 @@ VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant halt
 
 # remove box if it exists
 vagrant box remove "bionic_docker_local" || true
+vagrant box remove "bionic_docker_local.box" || true
 
 # export VM as a new box
 vagrant package --base bionic_docker_local --output bionic_docker_local.box
 
 # remove the no longer needed VM
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant destroy -f
-
-# add the box to vagrant inventory
-vagrant box add "bionic_docker_local.box" "${SCRIPTPATH}/../bionic_docker_local.box"
 
 # start and provision all the VMs
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile" vagrant up
