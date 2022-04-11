@@ -31,3 +31,7 @@
         pull: true
         ports:
           - "5432:5432"
+        env: 
+          POSTGRES_USER: petclinic
+          POSTGRES_PASSWORD: petclinic
+          POSTGRES_DB: petclinic
