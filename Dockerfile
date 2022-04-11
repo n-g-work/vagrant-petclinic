@@ -3,10 +3,11 @@ RUN apt-get update && apt-get install -y git
 RUN cd /usr/src \
   && git clone https://github.com/spring-projects/spring-petclinic.git \
   && cd spring-petclinic \
+  && sed -i 's/localhost/db/' ./src/main/resources/application-postgres.properties \
   && mvn package
 
 FROM openjdk:19-jdk-alpine
 RUN cd /usr/local/bin
 COPY --from=builder /usr/src/spring-petclinic/target/*.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=postgres", "-jar", "app.jar"]
