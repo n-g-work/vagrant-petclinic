@@ -2,6 +2,8 @@
 set -o errtrace
 trap 'echo "catched error on line $LINENO ";exit 1' ERR
 
+echo "started: $(date -Is)"
+
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit ; pwd -P )"
 
 ansible-galaxy install -r "${SCRIPTPATH}/../ansible/requirements.yml" --roles-path "${SCRIPTPATH}/../ansible/roles/"
@@ -38,3 +40,5 @@ VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant destroy 
 
 # start and provision all the VMs
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile" vagrant up
+
+echo "finished: $(date -Is)"
