@@ -51,7 +51,8 @@ Vagrant.configure("2") do |config|
                 #ansible.verbose = "vvvv"
                 ansible.extra_vars = {
                     registry_ip: box['registry_ip'],
-                    database_ip: box['database_ip']
+                    database_ip: box['database_ip'],
+                    monitoring_ip: box['monitoring_ip']
                 }
             end
         end
