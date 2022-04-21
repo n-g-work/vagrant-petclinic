@@ -56,3 +56,19 @@
           - "80:8080"
         etc_hosts:
           "db": "{{database_ip}}"
+
+    - name: run filebeat collector
+      docker_container:
+        user: root
+        name: filebeat
+        state: started
+        restart_policy: unless-stopped
+        image: docker.elastic.co/beats/filebeat:8.1.2
+        pull: true
+        etc_hosts: >
+          { "monitoring": "{{monitoring_ip}}" }
+        volumes:
+          - /vagrant/monitoring/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
+          - /var/lib/docker/containers:/var/lib/docker/containers:ro
+          - /var/run/docker.sock:/var/run/docker.sock:ro
+        command: "filebeat -e --strict.perms=false -E output.elasticsearch.hosts=[\"monitoring:9200\"]"
