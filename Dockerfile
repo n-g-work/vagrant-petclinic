@@ -3,7 +3,10 @@ RUN apt-get update && apt-get install -y git
 RUN cd /usr/src \
   && git clone https://github.com/spring-projects/spring-petclinic.git \
   && cd spring-petclinic \
+  && subs='  <dependency>\n    <groupId>io.micrometer</groupId>\n    <artifactId>micrometer-registry-prometheus</artifactId>\n  </dependency>' \
+  && sed -i "0,/<dependencies>/{s|<dependencies>|<dependencies>\n\n${subs}\n|}" pom.xml \
   && sed -i 's/localhost/db/' ./src/main/resources/application-postgres.properties \
+  && echo 'management.endpoints.web.exposure.include=health,info,metrics,prometheus' >> ./src/main/resources/application-postgres.properties \
   && mvn package
 
 FROM openjdk:19-jdk-alpine
