@@ -35,7 +35,7 @@
           POSTGRES_USER: petclinic
           POSTGRES_PASSWORD: petclinic
           POSTGRES_DB: petclinic
-    
+        command: "postgres -c log_statement=all -c log_destination=stderr"
 
     - name: run filebeat collector
       docker_container:
