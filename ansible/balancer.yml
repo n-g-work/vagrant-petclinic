@@ -29,6 +29,16 @@
         groups: docker
       become: true
 
+    - name: add app ip addresses to nginx configuration
+      run_once: true
+      blockinfile:
+        path: /vagrant/balancer/nginx.conf
+        insertafter: "upstream app {"
+        marker: "        # {mark} ANSIBLE MANAGED BLOCK {{item}}"
+        block: "        server {{ hostvars[item].ansible_host }};"
+      when: hostvars[item].inventory_hostname is match("app*")
+      with_items: "{{ groups.app }}"
+
     - name: run nginx container
       docker_container:
         name: nginx-lb
