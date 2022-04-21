@@ -45,9 +45,9 @@
         name: docker
         state: restarted
 
-    - name: "run container"
+    - name: run app container
       docker_container:
-        name: petclinic
+        name: "petclinic-{{inventory_hostname}}"
         state: started
         restart_policy: unless-stopped
         image: "{{registry_ip}}:5000/petclinic:latest"
