@@ -10,6 +10,7 @@
         "box": "bionic_docker_local",
         "playbook": "ansible/registry.yml",
         "memory": 4096,
+        "cpus": 2,
         "ip": "192.168.56.10"
     },{
         "name": "db",
@@ -24,12 +25,16 @@
         "description": "App VM. Now's the time to spin up a VM with the application",
         "box": "bionic_docker_local",
         "playbook": "ansible/petclinic-docker-roles.yml",
+        "memory": 1024,
+        "cpus": 2,
         "ip": "192.168.56.30"
     },{
         "name": "app2",
         "description": "App VM. And another one. Just to complete the set",
         "box": "bionic_docker_local",
         "playbook": "ansible/petclinic-docker-roles.yml",
+        "memory": 1024,
+        "cpus": 2,
         "ip": "192.168.56.31"
     },{
         "name": "lb",
