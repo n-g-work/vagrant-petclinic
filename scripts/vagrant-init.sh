@@ -22,19 +22,23 @@ if grep -q Microsoft /proc/version; then
   export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
 fi
 
-# build base VM from bionic ubuntu cloud image with addition of docker
-VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant up
+base_box_exists=$( vagrant box list | grep bionic_docker_local | awk '{print $1}' )
+if [ -z "${base_box_exists}" ]; then
+  # build base VM from bionic ubuntu cloud image with addition of docker
+  VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant up
 
-# stop built VM
-VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant halt
+  # stop built VM
+  VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant halt
 
-# remove box if it exists
-vagrant box remove "bionic_docker_local" || true
-vagrant box remove "bionic_docker_local.box" || true
+  # remove box file
+  rm -f bionic_docker_local.box
 
-# export VM as a new box
-vagrant package --base bionic_docker_local --output bionic_docker_local.box
+  # export VM as a new box file
+  vagrant package --base bionic_docker_local --output bionic_docker_local.box
 
+  # add the box file as box
+  vagrant box add bionic_docker_local.box --name bionic_docker_local
+fi
 # remove the no longer needed VM
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant destroy -f
 
