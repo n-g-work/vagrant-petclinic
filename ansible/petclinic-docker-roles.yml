@@ -29,6 +29,10 @@
         groups: docker
       become: true
 
+    - name: remove daemon.json file
+      file: 
+        path: /etc/docker/daemon.json
+        state: absent
     - name: ensure daemon.json file exists
       file: 
         path: /etc/docker/daemon.json
