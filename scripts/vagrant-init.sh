@@ -2,8 +2,6 @@
 set -o errtrace
 trap 'echo "error occurred on line $LINENO ";exit 1' ERR
 
-echo "started: $(date "+%Y-%m-%d %H-%M-%S %z")"
-
 SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 || exit ; pwd -P )"
 
 ansible-galaxy install -r "${SCRIPTPATH}/../ansible/requirements.yml" --roles-path "${SCRIPTPATH}/../ansible/roles/"
@@ -48,5 +46,3 @@ VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile" vagrant up --no-provi
 
 # provision all the other VMs
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile" vagrant provision
-
-echo "finished: $(date "+%Y-%m-%d %H-%M-%S %z")"
