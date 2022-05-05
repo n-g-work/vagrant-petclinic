@@ -49,11 +49,7 @@ Vagrant.configure("2") do |config|
             curr.vm.provision "ansible" do |ansible|
                 ansible.playbook = box['playbook']
                 #ansible.verbose = "vvvv"
-                ansible.extra_vars = {
-                    registry_ip: box['registry_ip'],
-                    database_ip: box['database_ip'],
-                    monitoring_ip: box['monitoring_ip']
-                }
+                ansible.inventory_path = File.join(File.dirname(__FILE__),"../ansible/hosts")
             end
         end
     end
