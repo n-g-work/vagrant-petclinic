@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -o errtrace
-trap 'echo "catched error on line $LINENO ";exit 1' ERR
+trap 'echo "error occurred on line $LINENO ";exit 1' ERR
 
 echo "started: $(date "+%Y-%m-%d %H-%M-%S %z")"
 
