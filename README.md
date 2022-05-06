@@ -14,7 +14,7 @@ To get through with all the operations these requirements should be met:
 * Virtualbox installed locally
 * WSL installed, if launched on Windows
 * Ansible installed
-* The scripts download Vagrant box from [https://cloud-images.ubuntu.com/], maven dependencies and docker images from DockerHub, so a connection to the Internet is mandatory too
+* The scripts download Vagrant box from [https://cloud-images.ubuntu.com/](https://cloud-images.ubuntu.com/), maven dependencies and docker images from DockerHub, so a connection to the Internet is mandatory too
 
 ## Quick start how-to
 
@@ -33,12 +33,12 @@ bash ./scripts/vagrant-init.sh
 To check that all servers are up and running you may:
 
 * Navigate to application servers:
-  * [http://192.168.56.30] - app1
-  * [http://192.168.56.31] - app2
-  * [http://192.168.56.40] - load balancer
+  * [http://192.168.56.30](http://192.168.56.30) - app1
+  * [http://192.168.56.31](http://192.168.56.31) - app2
+  * [http://192.168.56.40](http://192.168.56.40) - load balancer
 * Navigate to monitoring server:
-  * [http://192.168.56.50:5601] - kibana with elastic/changeme credentials
-  * [http://192.168.56.50:9090] - prometheus
+  * [http://192.168.56.50:5601](http://192.168.56.50:5601) - kibana with elastic/changeme credentials
+  * [http://192.168.56.50:9090](http://192.168.56.50:9090) - prometheus
 
 ### Remove everything
 
