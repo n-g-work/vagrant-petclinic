@@ -9,10 +9,6 @@
   vars: 
     elk_git: https://github.com/deviantony/docker-elk.git
     elk_path: /usr/local/src/docker-elk
-    docker_install_compose: true
-    docker_compose_version: "1.26.0"
-    pip_install_packages:
-      - name: docker
 
   roles:
     - geerlingguy.pip
@@ -25,6 +21,13 @@
         update_cache: yes
         state: latest
         name: python3-pip
+
+    - name: install 'Docker SDK for Python'
+      #become: true  # WILL STOP WORKING IF UNCOMMENTED
+      pip:
+        name: 
+          - docker
+          - docker-compose
 
     - name: add vagrant user to docker group
       user:
