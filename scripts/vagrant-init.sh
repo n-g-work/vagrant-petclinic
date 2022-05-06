@@ -36,10 +36,10 @@ if [ -z "${base_box_exists}" ]; then
 
   # add the box file as box
   vagrant box add bionic_docker_local.box --name bionic_docker_local
-fi
 
-# remove the no longer needed VM
-VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant destroy -f
+  # remove the no longer needed VM
+  VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile_base" vagrant destroy -f
+fi
 
 # init all the other VMs
 VAGRANT_VAGRANTFILE="${SCRIPTPATH}/../vagrant/Vagrantfile" vagrant up --no-provision
