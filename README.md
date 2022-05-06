@@ -28,6 +28,18 @@ cd vagrant-petclinic/
 bash ./scripts/vagrant-init.sh
 ```
 
+## Check infrastructure
+
+To check that all servers are up and running you may:
+
+* Navigate to application servers:
+  * [http://192.168.56.30] - app1
+  * [http://192.168.56.31] - app2
+  * [http://192.168.56.40] - load balancer
+* Navigate to monitoring server:
+  * [http://192.168.56.50:5601] - kibana with elastic/changeme credentials
+  * [http://192.168.56.50:9090] - prometheus
+
 ### Remove everything
 
 ```bash
