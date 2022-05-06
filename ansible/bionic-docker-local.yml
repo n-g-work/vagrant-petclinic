@@ -5,6 +5,8 @@
     - name: Update repositories cache
       apt:
         update_cache: yes
+        cache_valid_time: 86400 # invalidate cache in 1 day
+      when: ansible_os_family=='Debian'
 
   vars:
     pip_install_packages:
