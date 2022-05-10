@@ -1,21 +1,19 @@
 ---
 groups:
 
-  - name: example
+  - name: default
     rules:
-      - alert: service_down
-        expr: up{job="spring-actuator"} == 0
+      - alert: CPU_Rate
+        expr: system_cpu_usage > 0.01
+        labels:
+          severity: high
+        annotations:
+          summary: WARN ! CPU High
+
+      - alert: apps_down
+        expr: up{job=~"apps"}==0
         labels:
           severity: major
         annotations:
           description: Service {{ $labels.instance }} is unavailable.
           value: DOWN ({{ $value }})
-
-  - name: default
-    rules:
-      - alert: CPU_Rate
-        expr: system_cpu_usage > 0.1
-        labels:
-          severity: high
-        annotations:
-          summary: WARN ! CPU High
