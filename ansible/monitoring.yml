@@ -66,3 +66,4 @@
           - "9090:9090"
         volumes:
           - /vagrant/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+          - /vagrant/monitoring/prometheus-alerts.yml:/etc/prometheus/prometheus-alerts.yml:ro
