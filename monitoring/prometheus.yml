@@ -24,3 +24,5 @@ scrape_configs:
           - 'app1:80'
           - 'app2:80'
 
+rule_files:
+  - "prometheus-alerts.yml"
