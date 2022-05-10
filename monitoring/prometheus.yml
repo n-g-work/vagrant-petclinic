@@ -23,23 +23,11 @@ scrape_configs:
     metrics_path: /actuator/prometheus
     static_configs:
       - targets:  # app servers - scraping
-          # BEGIN ANSIBLE MANAGED BLOCK - scraping app2
-          - 192.168.56.31
-          # END ANSIBLE MANAGED BLOCK - scraping app2
-          # BEGIN ANSIBLE MANAGED BLOCK - scraping app1
-          - 192.168.56.30
-          # END ANSIBLE MANAGED BLOCK - scraping app1
 
 alerting:
   alertmanagers:
     - static_configs:
-      - targets:  # app servers - alerting
-          # BEGIN ANSIBLE MANAGED BLOCK - alerting app2
-          - 192.168.56.31
-          # END ANSIBLE MANAGED BLOCK - alerting app2
-          # BEGIN ANSIBLE MANAGED BLOCK - alerting app1
-          - 192.168.56.30
-          # END ANSIBLE MANAGED BLOCK - alerting app1
+        - targets:  # app servers - alerting
 
 rule_files:
   - "prometheus-alerts.yml"
