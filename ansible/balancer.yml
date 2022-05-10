@@ -52,7 +52,7 @@
           - /vagrant/balancer/nginx.conf:/etc/nginx/nginx.conf
           - /vagrant/balancer/logs:/etc/nginx/logs
           - /vagrant/balancer/html:/var/www/html
-    
+
     - name: run filebeat collector
       docker_container:
         user: root
