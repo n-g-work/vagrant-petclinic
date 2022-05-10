@@ -10,26 +10,36 @@ global:
 
 # Scrape configs only contain one scrape target
 scrape_configs:
+
   - job_name: 'prometheus'
     # Override the global default and scrape targets from this job every 5s
     scrape_interval: 5s
     static_configs:
-      - targets:
+      - targets:  # self
           - 'localhost:9090'
+
   - job_name: 'apps'
     scrape_interval: 5s
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets:
-          - 'app1:80'
-          - 'app2:80'
+      - targets:  # app servers - scraping
+          # BEGIN ANSIBLE MANAGED BLOCK - scraping app2
+          - 192.168.56.31
+          # END ANSIBLE MANAGED BLOCK - scraping app2
+          # BEGIN ANSIBLE MANAGED BLOCK - scraping app1
+          - 192.168.56.30
+          # END ANSIBLE MANAGED BLOCK - scraping app1
 
 alerting:
   alertmanagers:
     - static_configs:
-      - targets:
-          - 'app1:80'
-          - 'app2:80'
+      - targets:  # app servers - alerting
+          # BEGIN ANSIBLE MANAGED BLOCK - alerting app2
+          - 192.168.56.31
+          # END ANSIBLE MANAGED BLOCK - alerting app2
+          # BEGIN ANSIBLE MANAGED BLOCK - alerting app1
+          - 192.168.56.30
+          # END ANSIBLE MANAGED BLOCK - alerting app1
 
 rule_files:
   - "prometheus-alerts.yml"
