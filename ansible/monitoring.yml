@@ -49,6 +49,26 @@
     - debug:
         var: output
 
+    - name: add app servers to prometheus configuration
+      run_once: true
+      blockinfile:
+        path: /vagrant/monitoring/prometheus.yml
+        insertafter: "      - targets:  # app servers - scraping"
+        marker: "          # {mark} ANSIBLE MANAGED BLOCK - scraping {{item}}"
+        block: "          - {{ hostvars[item].ansible_host }}"
+      when: hostvars[item].inventory_hostname is match("app*")
+      with_items: "{{ groups.app }}"
+
+    - name: add app servers to prometheus configuration
+      run_once: true
+      blockinfile:
+        path: /vagrant/monitoring/prometheus.yml
+        insertafter: "      - targets:  # app servers - alerting"
+        marker: "          # {mark} ANSIBLE MANAGED BLOCK - alerting {{item}}"
+        block: "          - {{ hostvars[item].ansible_host }}"
+      when: hostvars[item].inventory_hostname is match("app*")
+      with_items: "{{ groups.app }}"
+
     - name: run prometheus container
       docker_container:
         user: root
@@ -58,11 +78,6 @@
         restart_policy: unless-stopped
         image: prom/prometheus:v2.35.0
         pull: true
-        etc_hosts: >
-          {
-            "app1": "{{app1_ip}}",
-            "app2": "{{app2_ip}}"
-          }
         ports:
           - "9090:9090"
         volumes:
