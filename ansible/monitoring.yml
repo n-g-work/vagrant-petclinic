@@ -54,6 +54,7 @@
         user: root
         name: prometheus
         state: started
+        restart: yes
         restart_policy: unless-stopped
         image: prom/prometheus:v2.35.0
         pull: true
