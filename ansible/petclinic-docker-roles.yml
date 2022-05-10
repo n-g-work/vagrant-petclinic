@@ -30,19 +30,19 @@
       become: true
 
     - name: remove daemon.json file
-      file: 
+      file:
         path: /etc/docker/daemon.json
         state: absent
     - name: ensure daemon.json file exists
-      file: 
+      file:
         path: /etc/docker/daemon.json
         state: touch
     - name: add local ip address to allowed insecure hosts
-      lineinfile: 
+      lineinfile:
         path: /etc/docker/daemon.json
         state: present
         line: "{{ item.value | to_nice_json }}"
-      with_items: 
+      with_items:
         - value: "{\"insecure-registries\":[\"{{registry_ip}}:5000\"],\"log-driver\":\"json-file\"}"
     - name: docker restart
       service:

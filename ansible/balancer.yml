@@ -18,7 +18,7 @@
         name: python3-pip
 
     - name: install 'Docker SDK for Python'
-      #become: true  # WILL STOP WORKING IF UNCOMMENTED
+      # become: true  # WILL STOP WORKING IF UNCOMMENTED
       pip:
         name: docker
 
@@ -45,7 +45,7 @@
         state: started
         restart_policy: unless-stopped
         image: nginx:1.21.6-alpine
-        #pull: true
+        # pull: true
         ports:
           - "80:80"
         volumes:
