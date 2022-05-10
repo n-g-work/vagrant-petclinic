@@ -1,5 +1,5 @@
 ---
-- hosts: app1,app2
+- hosts: app
   become: true
   pre_tasks:
     - name: Update repositories cache
